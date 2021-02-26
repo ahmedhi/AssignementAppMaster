@@ -1,0 +1,10 @@
+<div class="container">
+<h1>
+  <nav>
+    <a routerLink="/home">{{titre}}</a>
+  </nav>
+</h1>
+<mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
+<button mat-flat-button color="primary" (click)="peuplerBD()">PeuplerBD avec données de test</button>
+</div>
+<router-outlet></router-outlet>
