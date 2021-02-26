@@ -9,7 +9,7 @@ import { AuthService } from './shared/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  titre = "Application de gestion d'Assignments";
+  titre = "Application de gestion d'Assignments POUR HEROKU CETTE FOIS-CI !";
 
   constructor(private authService:AuthService,
               private router:Router,
