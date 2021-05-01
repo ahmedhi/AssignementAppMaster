@@ -5,23 +5,23 @@ import { Assignment } from './assignment.model';
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
-  styleUrls: ['./assignments.component.css'],
+  styleUrls: ['./assignments.component.css','../app.component.css'],
 })
 export class AssignmentsComponent implements OnInit {
   titre = 'Liste des assignments : ';
   assignments: Assignment[];
+  assignmentsCat;
 
   // ici injection des services utilisés, en pas oublier "private"
   constructor(private assignmentsService: AssignmentsService) {}
 
-  ngOnInit(): void {
-    // appelée avant affichage du composant
-    console.log(
-      'Composant assignments, dans le ngOnInit, on demande aux service le tableau des assignments'
-    );
+  ngOnInit(): void {    
     this.assignmentsService.getAssignments().subscribe((assignments) => {
-      console.log('Dans le subscribe...');
       this.assignments = assignments;
+    });  
+
+    this.assignmentsService.getAssignementsCategories().subscribe((assignmentsCat) => {
+      this.assignmentsCat = assignmentsCat;
     });
   }
 }

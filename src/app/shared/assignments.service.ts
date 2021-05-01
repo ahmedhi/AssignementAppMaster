@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
+import { AssignmentCat } from '../assignments/assignmentCat.model';
 import { LoggingService } from './logging.service';
 
 @Injectable({
@@ -10,28 +11,66 @@ export class AssignmentsService {
   assignments:Assignment[] = [
     {
       id:1,
-      nom:"Devoir Angular Mr Buffa No 1",
+      nom:"Apex",
       dateDeRendu: new Date("03/21/2021"),
-      rendu:false
+      rendu:true,
+      student: 'Ahmed HILALI',
+      remarque: '',
+      note: 0,
     },
     {
       id:2,
-      nom:"Gestion de projet, rapport pour Mr Winter",
+      nom:"Visual Force",
       dateDeRendu:new Date("03/25/2021"),
-      rendu:false
+      rendu:false,
+      student: 'Ahmed HILALI',
+      remarque: '',
+      note: 0,
     },
     {
       id:3,
-      nom:"Devoir ERP pour Mr Yosi Gal",
+      nom:"Visual Force",
       dateDeRendu:new Date("01/04/2021"),
-      rendu:true
+      rendu:true,
+      student: 'Askour Hamza',
+      remarque: '',
+      note: 0,
     }
   ];
+
+  assignmentsCat:AssignmentCat[] = [
+    {
+      nom : "Apex",
+      teacher : "Karam MOHAMED",
+    },
+    {
+      nom : "Visual Force",
+      teacher : "Achraf CHOUCHOU",
+    },
+    {
+      nom : "Angular",
+      teacher : "Michel BUFFA",
+    },
+    {
+      nom : "Architecture des composants",
+      teacher : "Richard Grin",
+    }
+  ] 
 
   constructor(private loggingService:LoggingService) { }
 
   getAssignments():Observable<Assignment[]> {
     return of(this.assignments);
+  }
+
+  getAssignementsCategories(): Observable<AssignmentCat[]> {
+    return of(this.assignmentsCat);
+  }
+
+  getAssignmentsByCategorie( categorie ): Observable<Assignment[]>{
+    return of(this.assignments.filter(object => {
+      return object['nom'] == categorie;
+    }));
   }
 
   getAssignment(id:number):Observable<Assignment> {

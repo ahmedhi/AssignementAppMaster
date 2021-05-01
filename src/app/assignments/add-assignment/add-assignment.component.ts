@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
@@ -7,15 +8,22 @@ import { Assignment } from '../assignment.model';
   templateUrl: './add-assignment.component.html',
   styleUrls: ['./add-assignment.component.css'],
 })
+
 export class AddAssignmentComponent implements OnInit {
   // pour le formulaire
   nomAssignment = '';
   dateDeRendu = '';
   studentAssignment = '';
+  assignmentsCat = [];
 
-  constructor(private assignmentsService:AssignmentsService) {}
+  constructor(private assignmentsService:AssignmentsService,
+              private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.assignmentsService.getAssignementsCategories().subscribe((assignmentsCat) => {
+      this.assignmentsCat = assignmentsCat;
+    });
+  }
 
   onSubmit() {
     let nouvelAssignment = new Assignment();
@@ -25,7 +33,7 @@ export class AddAssignmentComponent implements OnInit {
 
     nouvelAssignment.nom = this.nomAssignment;
     nouvelAssignment.dateDeRendu = new Date(this.dateDeRendu);
-    nouvelAssignment.dateDeRendu = new Date(this.studentAssignment);
+    nouvelAssignment.student = this.studentAssignment;
     nouvelAssignment.rendu = false;
 
     //this.assignments.push(nouvelAssignment);
@@ -34,6 +42,7 @@ export class AddAssignmentComponent implements OnInit {
       console.log('Assignment ajouté');
 
       // naviguer programmatiquement vers "/home" pour afficher la liste
+      this.router.navigate(["/home"]);
     });
   }
 

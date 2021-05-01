@@ -5,8 +5,13 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Choisissez un nom</mat-label>
-    <input required matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom">
+    <mat-label>Selectionner une matière</mat-label>
+    <select matNativeControl required [(ngModel)]="nomAssignment">
+      <option *ngFor="let assignmentCat of assignmentsCat" 
+          [value]="assignmentCat.nom" >
+        {{assignmentCat.nom}} ( {{assignmentCat.teacher}} )
+      </option>
+    </select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
