@@ -14,7 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { FormsModule } from '@angular/forms';
@@ -63,7 +63,8 @@ const routes:Routes = [
     MatSlideToggleModule,
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,21 +7,24 @@
     </a>
   </nav>
   <h2>{{titre}}</h2>
+  <!--
   <div class="pagination">
     <button (click)="premierePage()" class="boutonsPagination">Première</button>
     <button (click)="pageSuivante()" [disabled]="!hasNextPage" class="boutonsPagination">Page Suivante</button>
     <button (click)="pagePrecedente()" [disabled]="!hasPrevPage" class="boutonsPagination">Page Précédente</button>
     <button (click)="dernierePage()">Dernière</button>
   </div>
+  -->
   <br>
   <mat-divider></mat-divider>
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
 
-  <mat-list *ngFor="let a of assignments">
+  <mat-list *cdkVirtualFor="let a of assignments">
     <nav>
       <a routerLink="/assignments/{{a.id}}">
         <h3 mat-subheader>{{a.dateDeRendu|date}}</h3>
 
-        <mat-list-item>
+        <mat-list-item class="example-item">
           <p *ngIf="a.rendu; else nonsoumis" appRendu>
             {{a.nom}}
             rendu par l'élève.
@@ -34,4 +37,5 @@
       </a>
     </nav>
   </mat-list>
+</cdk-virtual-scroll-viewport>
 </main>

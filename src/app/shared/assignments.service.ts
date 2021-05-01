@@ -11,11 +11,12 @@ import { data } from './assignmentsData';
   providedIn: 'root'
 })
 export class AssignmentsService {
+
   constructor(private loggingService:LoggingService,
               private http:HttpClient) { }
 
-  //uri = "http://localhost:8010/api/assignments";
-    uri = "https://apiemsi2021.herokuapp.com/api/assignments";
+  uri = "http://localhost:8010/api/assignments";
+  //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.uri);
@@ -72,6 +73,9 @@ export class AssignmentsService {
     data.forEach(a => {
       let newAssignment = new Assignment();
       newAssignment.nom = a.nom;
+      newAssignment.student = a.student;
+      newAssignment.remarque = a.remarque;
+      newAssignment.note = a.note;
       newAssignment.dateDeRendu = new Date(a.dateDeRendu);
       newAssignment.rendu = a.rendu;
       newAssignment.id = a.id;
@@ -92,7 +96,10 @@ export class AssignmentsService {
       const new_assignment = new Assignment();
       new_assignment.nom = a.nom;
       new_assignment.dateDeRendu = new Date(a.dateDeRendu);
-      new_assignment.rendu = false;
+      new_assignment.rendu = a.rendu;
+      new_assignment.student = a.student;
+      new_assignment.remarque = a.remarque;
+      new_assignment.note = a.note;
       calls.push(this.addAssignment(new_assignment));
     });
     return forkJoin(calls); // renvoie un seul Observable pour dire que c'est fini
