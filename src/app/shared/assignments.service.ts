@@ -1,13 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
 import { Assignment } from '../assignments/assignment.model';
-import { AssignmentCat } from '../assignments/assignmentCat.model';
 import { LoggingService } from './logging.service';
+import { data } from './assignmentsData';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignmentsService {
+  /*
   assignments:Assignment[] = [
     {
       id:1,
@@ -37,6 +41,7 @@ export class AssignmentsService {
       note: 0,
     }
   ];
+  */
 
   assignmentsCat:AssignmentCat[] = [
     {
@@ -57,60 +62,100 @@ export class AssignmentsService {
     }
   ] 
 
-  constructor(private loggingService:LoggingService) { }
-
-  getAssignments():Observable<Assignment[]> {
-    return of(this.assignments);
-  }
-
   getAssignementsCategories(): Observable<AssignmentCat[]> {
     return of(this.assignmentsCat);
   }
 
-  getAssignmentsByCategorie( categorie ): Observable<Assignment[]>{
-    return of(this.assignments.filter(object => {
-      return object['nom'] == categorie;
-    }));
+  constructor(private loggingService:LoggingService,
+              private http:HttpClient) { }
+
+  uri = "http://localhost:8010/api/assignments";
+  //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
+
+  getAssignments():Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(this.uri);
+  }
+
+  getAssignmentsPagines(page:number, limit:number):Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(this.uri+ "?page=" + page + "&limit=" + limit);
   }
 
   getAssignment(id:number):Observable<Assignment> {
-    let assignementCherche = this.assignments.find(a => a.id === id);
-    return of(assignementCherche);
+    return this.http.get<Assignment>(this.uri + "/" + id)
+    .pipe(
+      tap(a => {
+        console.log("Dans pipe/tap j'ai récupéré assignement nom = " +a.nom)
+      }),
+      map(a => {
+        a.nom += " ALTERE PAR LE MAP";
+        return a;
+      }),
+      catchError(this.handleError<Assignment>("getAssignment avec id = " + id))
+    );
   }
 
-  addAssignment(assignment:Assignment):Observable<string> {
-    assignment.id = Math.floor(Math.random() * 100000);
+  private handleError<T>(operation, result?:T) {
+    return(error:any):Observable<T> => {
+      console.log(error); // pour afficher l'erreur dans la console
+      console.log(operation + " a échoué " + error.message);
 
-    this.assignments.push(assignment);
+      return of(result as T);
+    }
+  }
+
+  addAssignment(assignment:Assignment):Observable<any> {
+    assignment.id = Math.floor(Math.random() * 100000);
 
     this.loggingService.log(assignment.nom, "ajouté")
 
-    return of("Assignment service: assignment ajouté !")
+    return this.http.post<Assignment>(this.uri, assignment);
   }
 
-  updateAssignment(assignment:Assignment):Observable<string> {
+  updateAssignment(assignment:Assignment):Observable<any> {
     // ici envoyer requête PUT à une base de données...
-
-    // En fait on a besoin de rien faire de spécial si on travaille avec
-    // un tableau car le paramètre passé EST UN ELEMENT DU TABLEAU
-    // et si on l'a modifié dans le composant details, par exemple
-    // en mettant sa propriété rendu à true, et bien, cela
-    // l'a aussi modifié dans le tableau
-
     this.loggingService.log(assignment.nom, "modifié")
 
-    return of("Assignment service: assignment modifié !")
+    return this.http.put<Assignment>(this.uri, assignment);
   }
 
-  deleteAssignment(assignment:Assignment):Observable<string> {
-    let pos = this.assignments.indexOf(assignment);
-    this.assignments.splice(pos, 1);
-
+  deleteAssignment(assignment:Assignment):Observable<any> {
     this.loggingService.log(assignment.nom, "supprimé");
-
-
-    return of("Assignment service: assignment supprimé !")
+    return this.http.delete(this.uri + "/" + assignment._id);
   }
 
+  peuplerBaseAvecDonneesDeTest() {
+    data.forEach(a => {
+      let newAssignment = new Assignment();
+      newAssignment.nom = a.nom;
+      newAssignment.student = a.student;
+      newAssignment.remarque = a.remarque;
+      newAssignment.note = a.note;
+      newAssignment.dateDeRendu = new Date(a.dateDeRendu);
+      newAssignment.rendu = a.rendu;
+      newAssignment.id = a.id;
 
+      this.addAssignment(newAssignment)
+      .subscribe(reponseObject => {
+        console.log(reponseObject.message);
+      })
+    })
+  }
+
+  // autre version qui permet de récupérer un subscribe une fois que tous les inserts
+  // ont été effectués
+  peuplerBDJoin(): Observable<any> {
+    const calls=[];
+
+    data.forEach((a) => {
+      const new_assignment = new Assignment();
+      new_assignment.nom = a.nom;
+      new_assignment.dateDeRendu = new Date(a.dateDeRendu);
+      new_assignment.rendu = a.rendu;
+      new_assignment.student = a.student;
+      new_assignment.remarque = a.remarque;
+      new_assignment.note = a.note;
+      calls.push(this.addAssignment(new_assignment));
+    });
+    return forkJoin(calls); // renvoie un seul Observable pour dire que c'est fini
+  }
 }

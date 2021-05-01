@@ -13,7 +13,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule} from '@angular/material/checkbox';
-
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +22,8 @@ import { AssignmentDetailComponent } from './assignments/assignment-detail/assig
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
+import { AuthGuard } from './shared/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes:Routes = [
   {
@@ -36,7 +39,9 @@ const routes:Routes = [
     path:"assignments/:id", component:AssignmentDetailComponent
   },
   {
-    path:"assignments/:id/edit", component:EditAssigmentComponent
+    path:"assignments/:id/edit",
+    component:EditAssigmentComponent,
+    canActivate: [AuthGuard]
   }
 ]
 
@@ -55,8 +60,11 @@ const routes:Routes = [
     FormsModule,
     MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
+    MatSlideToggleModule,
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -13,7 +14,8 @@ export class AssignmentDetailComponent implements OnInit {
 
   constructor(private assignmentsService:AssignmentsService,
               private route:ActivatedRoute,
-              private router:Router) {}
+              private router:Router,
+              private authService:AuthService) {}
 
   ngOnInit(): void {
     // on doit récupérer l'id dans l'URL, et on doit utiliser
@@ -38,16 +40,14 @@ export class AssignmentDetailComponent implements OnInit {
     this.assignmentTransmis.rendu = true;
 
     this.assignmentsService.updateAssignment(this.assignmentTransmis)
-      .subscribe(message => {
-        console.log(message);
+      .subscribe(reponseObject => {
         this.router.navigate(["/home"]);
       });
   }
 
   onDelete() {
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
-    .subscribe(message => {
-      console.log(message);
+    .subscribe(reponseObject => {
       this.assignmentTransmis = null;
       // on vaigue programmatiquement
       this.router.navigate(["/home"]);
@@ -60,5 +60,9 @@ export class AssignmentDetailComponent implements OnInit {
       queryParams: {nom:"BUFFA", prenom:"MICHEL", age:55, instrument:"Guitare Electrique"},
       fragment:"SECTION1"
     });
+  }
+
+  isLoggedIn() {
+    return this.authService.loggedIn
   }
 }

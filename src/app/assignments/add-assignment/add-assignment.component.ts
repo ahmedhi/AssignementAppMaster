@@ -8,7 +8,6 @@ import { Assignment } from '../assignment.model';
   templateUrl: './add-assignment.component.html',
   styleUrls: ['./add-assignment.component.css'],
 })
-
 export class AddAssignmentComponent implements OnInit {
   // pour le formulaire
   nomAssignment = '';
@@ -39,8 +38,6 @@ export class AddAssignmentComponent implements OnInit {
     //this.assignments.push(nouvelAssignment);
     this.assignmentsService.addAssignment(nouvelAssignment)
     .subscribe((message) => {
-      console.log('Assignment ajouté');
-
       // naviguer programmatiquement vers "/home" pour afficher la liste
       this.router.navigate(["/home"]);
     });
