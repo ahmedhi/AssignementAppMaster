@@ -30,6 +30,28 @@
   </div>
   <img src="assets/img/emsi.jpeg" class="img-banner">
 </div>
+<div>
+  <nav class="display-flex flex-end card-header">
+    <div>
+      <img src="assets/img/person@3x.png" class="icone">
+    </div>
+    <div style="padding-left: .5rem;">
+      Ahmed HILALI - Administrateur
+    </div>
+    <div style="padding-left: 1rem;">
+      <button mat-button routerLink="/add" class="btn btn-remove">Se déconnecter</button>
+    </div>
+  </nav>
+  <div class="card">
+    <div class="display-flex space-between">
+      <h2 style="color: #073042;">Liste des assignments : </h2>
+      <nav>
+        <button mat-button routerLink="/add" class="btn btn-add">Ajouter un nouvelle assignment</button>
+      </nav>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  
+</div>
 
 
-<router-outlet></router-outlet>

@@ -1,6 +1,21 @@
 <mat-card *ngIf="assignmentTransmis">
-  <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+  <mat-card-title>{{assignmentTransmis.nom}} - {{ assignmentTransmis.student }}</mat-card-title>
   <mat-card-subtitle>{{assignmentTransmis.dateDeRendu|date}}</mat-card-subtitle>
+  <mat-card-content>
+
+    <div class="display-flex space-between">
+      <div>
+        <b>Remarque : </b>
+        <div>
+          {{ assignmentTransmis.remarque }}        
+        </div>
+      </div>
+      <div>
+        {{ assignmentTransmis.note }} / 20
+      </div>
+
+    </div>
+  </mat-card-content>
   <div id="bottom">
     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
       Rendu

@@ -13,9 +13,9 @@ export class AssignmentsService {
       id:1,
       nom:"Apex",
       dateDeRendu: new Date("03/21/2021"),
-      rendu:true,
+      rendu: false,
       student: 'Ahmed HILALI',
-      remarque: '',
+      remarque: 'lorem jnjdnjnsd jsdjdnjsndjnrl flrflrfr snjdn jsn  r,nfkr,kr sudb',
       note: 0,
     },
     {

@@ -15,6 +15,9 @@
 .display-flex.center{
     justify-content: center;
 }
+.display-flex.flex-end{
+    justify-content: flex-end;
+}
 
 .text-bold{
     font-weight: bold;
@@ -81,7 +84,16 @@ a{
 .card{
     padding: 1rem;
     background: #07304233;
-    border-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.card-header{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1rem;
+    background: #073042;
+    color: white;
 }
 
 .mat-card{

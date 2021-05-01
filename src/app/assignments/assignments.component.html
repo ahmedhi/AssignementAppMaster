@@ -1,60 +1,50 @@
 <main class="container">  
 
-  <div class="card">
-    <div class="display-flex space-between">
-      <h2 style="color: #073042;">{{titre}}</h2>
-      <nav>
-        <button mat-button routerLink="/add" class="btn btn-add">Ajouter un nouvelle assignment</button>
-      </nav>
-    </div>
+  <div *ngFor="let assignement of assignmentsCat" class="mg-b-1">    
+    <mat-card>
+      <mat-card-title class="card-title">
+        {{ assignement.nom }} :
+      </mat-card-title>
+      <mat-card-subtitle>Assuré par : {{ assignement.teacher }}</mat-card-subtitle>
 
-    <div *ngFor="let assignement of assignmentsCat" class="mg-b-1">    
-      <mat-card>
-        <mat-card-title class="card-title">
-          {{ assignement.nom }} :
-        </mat-card-title>
-        <mat-card-subtitle>Assuré par : {{ assignement.teacher }}</mat-card-subtitle>
+      <mat-card-content class="display-flex">
+        <div *ngFor="let a of assignments">
+          <mat-card *ngIf="a.nom == assignement.nom" class="cardDetails">
+            <mat-card-title class="card-title-student">
+              {{a.student}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{a.dateDeRendu|date}}
+            </mat-card-subtitle>
 
-        <mat-card-content class="display-flex">
-          <div *ngFor="let a of assignments">
-            <mat-card *ngIf="a.nom == assignement.nom" class="cardDetails">
-              <mat-card-title class="card-title-student">
-                {{a.student}}
-              </mat-card-title>
-              <mat-card-subtitle>
-                {{a.dateDeRendu|date}}
-              </mat-card-subtitle>
-
-              <mat-card-content style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="assignementResult">
-                  <div *ngIf="a.rendu; else nonsoumis" >
-                    Le devoir a été rendu
-                  </div>
-                  <ng-template #nonsoumis>
-                    Le devoir n'a pas encore été rendu.
-                  </ng-template>
+            <mat-card-content style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="assignementResult">
+                <div *ngIf="a.rendu; else nonsoumis" >
+                  Le devoir a été rendu
                 </div>
-                <div class="assignementNote text-bold">
-                  
-                  <div *ngIf="a.rendu; else notex">
-                    Note : {{ a.note }} / 20
-                  </div>
-                  <ng-template #notex>
-                    Note : -- / 20
-                  </ng-template>
+                <ng-template #nonsoumis>
+                  Le devoir n'a pas encore été rendu.
+                </ng-template>
+              </div>
+              <div class="assignementNote text-bold">
+                
+                <div *ngIf="a.rendu; else notex">
+                  Note : {{ a.note }} / 20
                 </div>
-              </mat-card-content>
-              <mat-card-actions class="display-flex" style="justify-content: flex-end;">
-                <button mat-button routerLink="/assignments/{{a.id}}" class="btn btn-info">Voir plus</button>
-              </mat-card-actions>
-            </mat-card>
-          </div>
+                <ng-template #notex>
+                  Note : -- / 20
+                </ng-template>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="display-flex" style="justify-content: flex-end;">
+              <button mat-button routerLink="/assignments/{{a.id}}" class="btn btn-info">Voir plus</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
 
-        </mat-card-content>
-      </mat-card>
-    </div>
-    </div>
-  
+      </mat-card-content>
+    </mat-card>
+  </div>
 
   
 </main>
