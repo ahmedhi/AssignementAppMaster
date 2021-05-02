@@ -71,9 +71,8 @@ export class AssignmentsService {
   constructor(private loggingService:LoggingService,
               private http:HttpClient) { }
 
-  uri = "http://localhost:8010/api/assignments";
-  uriLogin = "http://localhost:8010/api/users";
-  //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
+  uri = "https://easy-attendance-api.herokuapp.com/api/assignments";
+  uriLogin = "https://easy-attendance-api.herokuapp.com/api/users";
 
   getAssignments():Observable<Assignment[]> {
     console.log("Assignements from DB : " + this.http.get<Assignment[]>(this.uri));
