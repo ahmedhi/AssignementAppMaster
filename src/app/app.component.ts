@@ -17,14 +17,14 @@ export class AppComponent {
               public router:Router,
               private assignmentsService:AssignmentsService) {}
 
-  login() {
+  /*login() {
     if(this.authService.loggedIn) {
       this.authService.logOut();
       this.router.navigate(["/home"]);
     } else {
       //this.authService.logIn();
     }
-  }
+  }*/
 
   /*peuplerBD() {
     //this.assignmentsService.peuplerBaseAvecDonneesDeTest();
