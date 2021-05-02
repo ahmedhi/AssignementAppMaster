@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
 import { data } from './assignmentsData';
+import { AssignmentCat } from '../assignments/assignmentCat.model';
 
 @Injectable({
   providedIn: 'root'

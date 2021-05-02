@@ -24,6 +24,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './assignments/login/login.component';
 
 const routes:Routes = [
   {
@@ -42,6 +43,9 @@ const routes:Routes = [
     path:"assignments/:id/edit",
     component:EditAssigmentComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:"login", component:LoginComponent
   }
 ]
 
@@ -52,7 +56,8 @@ const routes:Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssigmentComponent
+    EditAssigmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
