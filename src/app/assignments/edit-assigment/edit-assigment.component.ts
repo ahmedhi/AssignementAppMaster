@@ -11,6 +11,9 @@ import { Assignment } from '../assignment.model';
 export class EditAssigmentComponent implements OnInit {
   nomAssignment = '';
   dateDeRendu = null;
+  remarqueAssignment = '';
+  noteAssignment:number;
+  studentAssignment = '';
   assignment: Assignment;
 
   constructor(
@@ -44,6 +47,9 @@ export class EditAssigmentComponent implements OnInit {
       // pour que le formulaire affiche les noms et dates
       this.nomAssignment = this.assignment.nom;
       this.dateDeRendu = this.assignment.dateDeRendu;
+      this.remarqueAssignment = this.assignment.remarque;
+      this.noteAssignment = this.assignment.note;
+      this.studentAssignment = this.assignment.student;
     });
   }
 
