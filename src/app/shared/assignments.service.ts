@@ -74,6 +74,7 @@ export class AssignmentsService {
   //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
+    console.log("Assignements from DB : " + this.http.get<Assignment[]>(this.uri));
     return this.http.get<Assignment[]>(this.uri);
   }
 
