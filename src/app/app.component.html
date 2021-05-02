@@ -44,7 +44,7 @@
     </div>
   </nav>
   <div class="card">
-    <div class="display-flex space-between" *ngIf="router.url !== '/login'" >
+    <div class="display-flex space-between" *ngIf="router.url !== '/login' && router.url !== '/add'" >
       <h2 style="color: #073042;">Liste des assignments : </h2>
       <nav>
         <button mat-button routerLink="/add" class="btn btn-add">Ajouter un nouveau assignment</button>

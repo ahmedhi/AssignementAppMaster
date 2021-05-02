@@ -116,6 +116,8 @@ export class AssignmentsService {
 
     this.loggingService.log(assignment.nom, "ajouté")
 
+    console.log( "Assignment = " + assignment );
+
     return this.http.post<Assignment>(this.uri, assignment);
   }
 
@@ -131,24 +133,6 @@ export class AssignmentsService {
   deleteAssignment(assignment:Assignment):Observable<any> {
     this.loggingService.log(assignment.nom, "supprimé");
     return this.http.delete(this.uri + "/" + assignment._id);
-  }
-
-  peuplerBaseAvecDonneesDeTest() {
-    data.forEach(a => {
-      let newAssignment = new Assignment();
-      newAssignment.nom = a.nom;
-      newAssignment.student = a.student;
-      newAssignment.remarque = a.remarque;
-      newAssignment.note = a.note;
-      newAssignment.dateDeRendu = new Date(a.dateDeRendu);
-      newAssignment.rendu = a.rendu;
-      newAssignment.id = a.id;
-
-      this.addAssignment(newAssignment)
-      .subscribe(reponseObject => {
-        console.log(reponseObject.message);
-      })
-    })
   }
 
   // autre version qui permet de récupérer un subscribe une fois que tous les inserts

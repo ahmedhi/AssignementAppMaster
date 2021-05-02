@@ -27,7 +27,6 @@ export class AddAssignmentComponent implements OnInit {
   onSubmit() {
     console.log("IM HERE NOM :" + this.nomAssignment + " date : " + this.dateDeRendu + ' student : ' + this.studentAssignment);
     let nouvelAssignment = new Assignment();
-    this.nomAssignment = "Apex";
     if(!this.nomAssignment) return;
     if(!this.dateDeRendu) return;
     if(!this.studentAssignment) return;
@@ -39,7 +38,6 @@ export class AddAssignmentComponent implements OnInit {
     nouvelAssignment.remarque = "";
     nouvelAssignment.note = 0;
 
-    //this.assignments.push(nouvelAssignment);
     this.assignmentsService.addAssignment(nouvelAssignment)
     .subscribe((message) => {
       // naviguer programmatiquement vers "/home" pour afficher la liste
