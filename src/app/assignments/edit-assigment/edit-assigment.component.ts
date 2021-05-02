@@ -63,8 +63,7 @@ export class EditAssigmentComponent implements OnInit {
 
     this.assignmentsService
       .updateAssignment(this.assignment)
-      .subscribe((message) => {
-        console.log(message);
+      .subscribe((reponseObject) => {
 
         // et on retourne à la page d'accueil pour afficher la liste
         this.router.navigate(['/home']);

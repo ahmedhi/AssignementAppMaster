@@ -1,7 +1,57 @@
-<h1>
-  <nav>
-    <a routerLink="/home">{{titre}}</a>
+<div class="display-flex" style="justify-content: space-between; align-items: flex-start;">
+  <img src="assets/img/universiteCoteDAzur.png" class="img-banner">
+  <div style="text-align: center; width: 50%;">
+    <h2 style="color: #007ea1;">
+      MASTER MIAGE INTENSE
+    </h2>
+    <h4 style="color: #004b5f;">
+      Michelle BUFFA
+    </h4>
+    <hr>    
+    <div style="display: flex; justify-content: space-around;">
+      <div>
+        <img src="assets/img/hamza.png" class="icone">ASKOUR Hamza
+      </div>
+      <div>
+        <img src="assets/img/Ahmed.png" class="icone">HILALI Ahmed
+      </div>
+    </div>
+    <hr>
+    
+    <a routerLink="/home" class="display-flex center text-bold">
+      <img src="assets/img/EasyAttendance.png" class="img-medium">
+      <div>
+        <h2 style="color: #007ea1;">
+          Easy Attendance
+        </h2>
+      </div>
+    </a>
+    
+  </div>
+  <img src="assets/img/emsi.jpeg" class="img-banner">
+</div>
+<div>
+  <nav class="display-flex flex-end card-header">
+    <div>
+      <img src="assets/img/person@3x.png" class="icone">
+    </div>
+    <div style="padding-left: .5rem;">
+      Ahmed HILALI - Administrateur
+    </div>
+    <div style="padding-left: 1rem;">
+      <button mat-button routerLink="/add" class="btn btn-remove">Se déconnecter</button>
+    </div>
   </nav>
-</h1>
+  <div class="card">
+    <div class="display-flex space-between">
+      <h2 style="color: #073042;">Liste des assignments : </h2>
+      <nav>
+        <button mat-button routerLink="/add" class="btn btn-add">Ajouter un nouvelle assignment</button>
+      </nav>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  
+</div>
 
-<router-outlet></router-outlet>
+

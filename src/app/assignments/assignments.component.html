@@ -1,31 +1,50 @@
-<main class="container">
-  <nav class="ajouterBtn">
-    <a routerLink="/add">
-      <button mat-flat-button color="accent">
-        Ajouter Assignment
-      </button>
-    </a>
-  </nav>
-  <h2>{{titre}}</h2>
+<main class="container">  
 
-  <mat-divider></mat-divider>
+  <div *ngFor="let assignement of assignmentsCat" class="mg-b-1">    
+    <mat-card>
+      <mat-card-title class="card-title">
+        {{ assignement.nom }} :
+      </mat-card-title>
+      <mat-card-subtitle>Assuré par : {{ assignement.teacher }}</mat-card-subtitle>
 
-  <mat-list *ngFor="let a of assignments">
-    <nav>
-      <a routerLink="/assignments/{{a.id}}">
-        <h3 mat-subheader>{{a.dateDeRendu|date}}</h3>
+      <mat-card-content class="display-flex">
+        <div *ngFor="let a of assignments">
+          <mat-card *ngIf="a.nom == assignement.nom" class="cardDetails">
+            <mat-card-title class="card-title-student">
+              {{a.student}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{a.dateDeRendu|date}}
+            </mat-card-subtitle>
 
-        <mat-list-item>
-          <p *ngIf="a.rendu; else nonsoumis" appRendu>
-            {{a.nom}}
-            rendu par l'élève.
-          </p>
-          <ng-template #nonsoumis>
-            <p>Le devoir {{a.nom}}, n'a pas encore été rendu.</p>
-          </ng-template>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </a>
-    </nav>
-  </mat-list>
+            <mat-card-content style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="assignementResult">
+                <div *ngIf="a.rendu; else nonsoumis" >
+                  Le devoir a été renduhttps://apiemsi2021.herokuapp.com/api/assignments
+                </div>
+                <ng-template #nonsoumis>
+                  Le devoir n'a pas encore été rendu.
+                </ng-template>
+              </div>
+              <div class="assignementNote text-bold">
+                
+                <div *ngIf="a.rendu; else notex">
+                  Note : {{ a.note }} / 20
+                </div>
+                <ng-template #notex>
+                  Note : -- / 20
+                </ng-template>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="display-flex" style="justify-content: flex-end;">
+              <button mat-button routerLink="/assignments/{{a.id}}" class="btn btn-info">Voir plus</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  
 </main>

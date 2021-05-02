@@ -1,27 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { map, pairwise, tap, filter, throttleTime } from 'rxjs/operators';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
-  styleUrls: ['./assignments.component.css'],
+  styleUrls: ['./assignments.component.css','../app.component.css'],
 })
 export class AssignmentsComponent implements OnInit {
   titre = 'Liste des assignments : ';
   assignments: Assignment[];
-
-  // ici injection des services utilisés, en pas oublier "private"
-  constructor(private assignmentsService: AssignmentsService) {}
+  assignmentsCat;
 
   ngOnInit(): void {
-    // appelée avant affichage du composant
-    console.log(
-      'Composant assignments, dans le ngOnInit, on demande aux service le tableau des assignments'
-    );
+    // appelée AVANT affichage du composant
+    
+    
     this.assignmentsService.getAssignments().subscribe((assignments) => {
-      console.log('Dans le subscribe...');
       this.assignments = assignments;
+      console.log(
+        'Assignments = ' + this.assignments.length
+      );
+    });
+
+    this.assignmentsService.getAssignementsCategories().subscribe((assignmentsCat) => {
+      this.assignmentsCat = assignmentsCat;
     });
   }
+
+  // ici injection des services utilisés, en pas oublier "private"
+  constructor(private assignmentsService: AssignmentsService, private ngZone:NgZone) {}
+
 }

@@ -1,1 +1,101 @@
 
+.display-flex{
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: wrap; 
+    align-items: center;
+    flex-direction: row;
+}
+.display-flex.space-between{
+    justify-content: space-between;
+}
+.display-flex.space-around{
+    justify-content: space-around;
+}
+.display-flex.center{
+    justify-content: center;
+}
+.display-flex.flex-end{
+    justify-content: flex-end;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.btn{
+    border: 1px solid ;
+    border-radius: 1rem
+} 
+
+.btn-info{
+    border-color: rgb(175, 42, 228);
+    color: rgb(175, 42, 228);
+}
+
+.btn-add{
+    border-color: rgb(42, 107, 228);
+    color: rgb(42, 107, 228);
+}
+
+.btn-remove{
+    border-color: rgb(228, 42, 42);
+    color: rgb(228, 42, 42);
+}
+
+.mg-b-1{
+    margin-bottom: 1rem;
+}
+
+.card-title{
+    color: #2da4e0;
+}
+
+.card-title-student{
+    color: #1f6c92;
+}
+
+.img-small{
+    width: 5rem;
+    height: auto;
+}
+
+.img-medium{
+    width: 4rem;
+    height: auto;
+    margin: 1rem;
+}
+
+.img-banner{
+    width: 25%;
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.icone{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.card{
+    padding: 1rem;
+    background: #07304233;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.card-header{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1rem;
+    background: #073042;
+    color: white;
+}
+
+.mat-card{
+    border-radius: 1rem;
+}
