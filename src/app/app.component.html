@@ -32,18 +32,19 @@
 </div>
 <div>
   <nav class="display-flex flex-end card-header">
-    <div>
+    <div *ngIf="router.url !== '/login'">
       <img src="assets/img/person@3x.png" class="icone">
     </div>
-    <div style="padding-left: .5rem;">
+    <div style="padding-left: .5rem;" *ngIf="router.url !== '/login'">
       Ahmed HILALI - Administrateur
     </div>
     <div style="padding-left: 1rem;">
-      <button mat-button routerLink="/add" class="btn btn-remove">Se déconnecter</button>
+      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="router.url !== '/login'">Se déconnecter</button>
+      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="router.url !== '/login'">Se connecter</button>
     </div>
   </nav>
   <div class="card">
-    <div class="display-flex space-between">
+    <div class="display-flex space-between" *ngIf="router.url !== '/login'" >
       <h2 style="color: #073042;">Liste des assignments : </h2>
       <nav>
         <button mat-button routerLink="/add" class="btn btn-add">Ajouter un nouvelle assignment</button>

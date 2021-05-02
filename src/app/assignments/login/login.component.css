@@ -1,6 +1,7 @@
 *:after, *:before {
     box-sizing: border-box;
 }
+
 *{
   margin : 0px;
 }
@@ -8,11 +9,6 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 .wrapper {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: #91c78866;
-    padding: 30px 15px;
-    background: linear-gradient(45deg, #90d18566, #91c78866);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,9 +85,9 @@ body {
     margin-bottom: 15px;
     border-radius: 25px;
     color: #fff;
-    background-color: #184d47;
+    background-color: #073042;
     text-decoration: none;
-    border: 1px solid #184d47;
+    border: 1px solid #073042;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
    font-size: 0.9rem;
 }
@@ -107,7 +103,7 @@ body {
     flex-wrap: wrap;
 }
 .login .login-form .form-wrapper .actions .signup-action .signup-link {
-    color: #184d47;
+    color: #073042;
     font-weight: bold;
     text-decoration: none;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;

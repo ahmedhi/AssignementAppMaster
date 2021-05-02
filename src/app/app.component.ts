@@ -12,7 +12,7 @@ export class AppComponent {
   titre = "Application de gestion d'Assignments POUR HEROKU CETTE FOIS-CI !";
 
   constructor(private authService:AuthService,
-              private router:Router,
+              public router:Router,
               private assignmentsService:AssignmentsService) {}
 
   login() {
