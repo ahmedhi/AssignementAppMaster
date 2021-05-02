@@ -75,6 +75,7 @@ body {
 .login .login-form .form-wrapper .actions {
     display: flex;
     flex-flow: column;
+    margin-top: 1rem;
 }
 .login .login-form .form-wrapper .actions .action {
     display: flex;

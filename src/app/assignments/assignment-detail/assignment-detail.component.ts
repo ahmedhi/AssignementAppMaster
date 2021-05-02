@@ -55,11 +55,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onClickEdit() {
-    this.router.navigate(["assignments", this.assignmentTransmis.id, "edit"],
-    {
-      queryParams: {nom:"BUFFA", prenom:"MICHEL", age:55, instrument:"Guitare Electrique"},
-      fragment:"SECTION1"
-    });
+    this.router.navigate(["assignments", this.assignmentTransmis.id, "edit"]);
   }
 
   isLoggedIn() {

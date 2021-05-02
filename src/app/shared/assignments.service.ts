@@ -74,6 +74,7 @@ export class AssignmentsService {
   //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
+    console.log("Assignements from DB : " + this.http.get<Assignment[]>(this.uri));
     return this.http.get<Assignment[]>(this.uri);
   }
 
@@ -88,7 +89,6 @@ export class AssignmentsService {
         console.log("Dans pipe/tap j'ai récupéré assignement nom = " +a.nom)
       }),
       map(a => {
-        a.nom += " ALTERE PAR LE MAP";
         return a;
       }),
       catchError(this.handleError<Assignment>("getAssignment avec id = " + id))
