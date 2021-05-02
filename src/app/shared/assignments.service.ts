@@ -89,7 +89,6 @@ export class AssignmentsService {
         console.log("Dans pipe/tap j'ai récupéré assignement nom = " +a.nom)
       }),
       map(a => {
-        a.nom += " ALTERE PAR LE MAP";
         return a;
       }),
       catchError(this.handleError<Assignment>("getAssignment avec id = " + id))

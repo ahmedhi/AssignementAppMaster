@@ -40,9 +40,7 @@ const routes:Routes = [
     path:"assignments/:id", component:AssignmentDetailComponent
   },
   {
-    path:"assignments/:id/edit",
-    component:EditAssigmentComponent,
-    canActivate: [AuthGuard]
+    path:"assignments/:id/edit",component:EditAssigmentComponent
   },
   {
     path:"login", component:LoginComponent
