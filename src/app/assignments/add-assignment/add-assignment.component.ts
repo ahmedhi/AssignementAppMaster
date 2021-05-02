@@ -25,15 +25,22 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("IM HERE NOM :" + this.nomAssignment + " date : " + this.dateDeRendu + ' student : ' + this.studentAssignment);
     let nouvelAssignment = new Assignment();
+    this.nomAssignment = "Apex";
     if(!this.nomAssignment) return;
     if(!this.dateDeRendu) return;
     if(!this.studentAssignment) return;
 
+    console.log("NOM : " + this.nomAssignment);
+    console.log("date : " + this.dateDeRendu);
+    console.log("student : " + this.studentAssignment);
     nouvelAssignment.nom = this.nomAssignment;
     nouvelAssignment.dateDeRendu = new Date(this.dateDeRendu);
     nouvelAssignment.student = this.studentAssignment;
     nouvelAssignment.rendu = false;
+    nouvelAssignment.remarque = "";
+    nouvelAssignment.note = 0;
 
     //this.assignments.push(nouvelAssignment);
     this.assignmentsService.addAssignment(nouvelAssignment)
