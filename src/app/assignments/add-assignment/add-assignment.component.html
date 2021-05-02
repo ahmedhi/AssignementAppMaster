@@ -8,7 +8,7 @@
     <mat-label>Selectionner une matière</mat-label>
     <select matNativeControl required [(ngModel)]="nomAssignment">
       <option *ngFor="let assignmentCat of assignmentsCat" 
-          [value]="assignmentCat.nom" >
+        [value]= "assignmentCat.nom" >
         {{assignmentCat.nom}} ( {{assignmentCat.teacher}} )
       </option>
     </select>
@@ -25,7 +25,7 @@
   </mat-form-field>
 
   <nav>
-      <button mat-stroked-button color="primary">
+      <button mat-stroked-button color="primary" >
         Ajouter un devoir
       </button>
   </nav>

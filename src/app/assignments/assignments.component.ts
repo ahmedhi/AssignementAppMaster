@@ -20,9 +20,6 @@ export class AssignmentsComponent implements OnInit {
     
     this.assignmentsService.getAssignments().subscribe((assignments) => {
       this.assignments = assignments;
-      console.log(
-        'Assignments = ' + this.assignments.length
-      );
     });
 
     this.assignmentsService.getAssignementsCategories().subscribe((assignmentsCat) => {
