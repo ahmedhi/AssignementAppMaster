@@ -4,6 +4,7 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Assignment } from '../assignments/assignment.model';
+import { User } from '../assignments/user.model';
 import { LoggingService } from './logging.service';
 import { data } from './assignmentsData';
 import { AssignmentCat } from '../assignments/assignmentCat.model';
@@ -71,11 +72,17 @@ export class AssignmentsService {
               private http:HttpClient) { }
 
   uri = "http://localhost:8010/api/assignments";
+  uriLogin = "http://localhost:8010/api/users";
   //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     console.log("Assignements from DB : " + this.http.get<Assignment[]>(this.uri));
     return this.http.get<Assignment[]>(this.uri);
+  }
+
+  getUsers():Observable<User[]> {
+    console.log("Users from DB : " + this.http.get<User[]>(this.uriLogin));
+    return this.http.get<User[]>(this.uri);
   }
 
   getAssignmentsPagines(page:number, limit:number):Observable<Assignment[]> {

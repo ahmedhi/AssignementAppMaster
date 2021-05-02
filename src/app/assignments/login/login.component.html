@@ -1,29 +1,24 @@
 <body>
-    <form action="#" method="post" target="_blank">
+      <form ngForm class="form" (submit)="onSubmit();" >
         <div class="wrapper">
             <div class="login">
             <div class="login-form">      
                 <h1 class="login-title">Se connecter</h1>
                 <div class="form-wrapper">
                 <div class="input-wrapper">
-                    <label class="label" for="email">Nom d'utilisateur</label>
-                    <input class="input" type="text" id="email" name="username" required autocomplete="off"/>
+                    <label class="label" for="login">Nom d'utilisateur</label>
+                    <input class="input" type="text" [(ngModel)]="username" name="login" required autocomplete="off"/>
                 </div><br>
+
                 <div class="input-wrapper">
                     <label class="label" for="password">Mot de passe</label>
-                    <input class="input" type="password" id="password" name="password" required/>
+                    <input class="input" type="password" [(ngModel)]="password" name="password" required/>
                 </div>
                 <div class="actions">
-                    <input class="action" type="submit" value="Se connecter"/>
-                    <div class="signup-action">
-                    Vous n'avez pas de compte ? <a class="signup-link" href="#"> Inscrivez vous !</a>
-                    </div>
+                    <button class="action"  value="Se connecter" >Se connecter</button>
+                    <div class="signup-action">Vous n'avez pas de compte ? <a class="signup-link" href="#"> Inscrivez vous !</a></div>
                 </div>
-                
                 </div>
-            </div>
-            <div class="login-decoration">
-                
             </div>
             </div>
         </div>
