@@ -11,7 +11,7 @@
         </div>
       </div>
       <div>
-        {{ assignmentTransmis.note }} / 20
+        <b>Note : </b> {{ assignmentTransmis.note }} / 20
       </div>
 
     </div>
@@ -20,9 +20,12 @@
     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
       Rendu
     </mat-checkbox>
+    
+    <mat-checkbox *ngIf="assignmentTransmis.rendu" [disabled]="true" [checked]="true">
+      Rendu
+    </mat-checkbox>
 
-
-        <button mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
+    <button mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
 
 
     <button mat-flat-button (click)="onDelete()" color="warn">DELETE</button>

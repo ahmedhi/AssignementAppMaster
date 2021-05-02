@@ -7,7 +7,7 @@ import { Assignment } from '../assignment.model';
 @Component({
   selector: 'app-assignment-detail',
   templateUrl: './assignment-detail.component.html',
-  styleUrls: ['./assignment-detail.component.css'],
+  styleUrls: ['./assignment-detail.component.css','../../app.component.css'],
 })
 export class AssignmentDetailComponent implements OnInit {
   assignmentTransmis:Assignment;

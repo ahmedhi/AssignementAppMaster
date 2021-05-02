@@ -32,9 +32,6 @@ export class AddAssignmentComponent implements OnInit {
     if(!this.dateDeRendu) return;
     if(!this.studentAssignment) return;
 
-    console.log("NOM : " + this.nomAssignment);
-    console.log("date : " + this.dateDeRendu);
-    console.log("student : " + this.studentAssignment);
     nouvelAssignment.nom = this.nomAssignment;
     nouvelAssignment.dateDeRendu = new Date(this.dateDeRendu);
     nouvelAssignment.student = this.studentAssignment;

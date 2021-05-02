@@ -116,6 +116,8 @@ export class AssignmentsService {
     // ici envoyer requête PUT à une base de données...
     this.loggingService.log(assignment.nom, "modifié")
 
+    console.log( assignment );
+
     return this.http.put<Assignment>(this.uri, assignment);
   }
 

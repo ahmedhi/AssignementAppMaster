@@ -67,6 +67,18 @@ export class EditAssigmentComponent implements OnInit {
       this.assignment.dateDeRendu = this.dateDeRendu;
     }
 
+    if(this.studentAssignment) {
+      this.assignment.student = this.studentAssignment;
+    }
+
+    if(this.noteAssignment) {
+      this.assignment.note = this.noteAssignment;
+    }
+
+    if(this.remarqueAssignment) {
+      this.assignment.remarque = this.remarqueAssignment;
+    }
+
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((reponseObject) => {
