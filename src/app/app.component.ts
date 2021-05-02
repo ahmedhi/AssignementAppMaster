@@ -11,6 +11,8 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   titre = "Application de gestion d'Assignments POUR HEROKU CETTE FOIS-CI !";
 
+
+
   constructor(private authService:AuthService,
               public router:Router,
               private assignmentsService:AssignmentsService) {}
@@ -20,11 +22,11 @@ export class AppComponent {
       this.authService.logOut();
       this.router.navigate(["/home"]);
     } else {
-      this.authService.logIn();
+      //this.authService.logIn();
     }
   }
 
-  peuplerBD() {
+  /*peuplerBD() {
     //this.assignmentsService.peuplerBaseAvecDonneesDeTest();
     this.assignmentsService.peuplerBDJoin()
        .subscribe((reponse) => {
@@ -32,5 +34,5 @@ export class AppComponent {
          // on navigue vers la page d'accueil pour afficher la liste
          this.router.navigate(["/home"]);
        })
-  }
+  }*/
 }

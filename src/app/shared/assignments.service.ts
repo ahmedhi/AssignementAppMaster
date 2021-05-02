@@ -72,7 +72,8 @@ export class AssignmentsService {
               private http:HttpClient) { }
 
   uri = "http://localhost:8010/api/assignments";
-  uriLogin = "http://localhost:8010/api/users";
+  //uriLogin = "http://localhost:8010/api/users";
+  uriLogin = "https://easy-attendance-api.herokuapp.com/api/users";
   //  uri = "https://apiemsi2021.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
@@ -82,7 +83,7 @@ export class AssignmentsService {
 
   getUsers():Observable<User[]> {
     console.log("Users from DB : " + this.http.get<User[]>(this.uriLogin));
-    return this.http.get<User[]>(this.uri);
+    return this.http.get<User[]>(this.uriLogin);
   }
 
   getAssignmentsPagines(page:number, limit:number):Observable<Assignment[]> {
