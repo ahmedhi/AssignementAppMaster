@@ -81,7 +81,7 @@ export class AssignmentsService {
 
   getUsers():Observable<User[]> {
     console.log("Users from DB : " + this.http.get<User[]>(this.uriLogin));
-    return this.http.get<User[]>(this.uri);
+    return this.http.get<User[]>(this.uriLogin);
   }
 
   getAssignmentsPagines(page:number, limit:number):Observable<Assignment[]> {

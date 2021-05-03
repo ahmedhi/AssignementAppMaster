@@ -3,7 +3,7 @@ import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { map, pairwise, tap, filter, throttleTime } from 'rxjs/operators';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
-import { User } from './user.model';
+//import { User } from './user.model';
 
 @Component({
   selector: 'app-assignments',
@@ -13,7 +13,7 @@ import { User } from './user.model';
 export class AssignmentsComponent implements OnInit {
   titre = 'Liste des assignments : ';
   assignments: Assignment[];
-  users : User[];
+  //users : User[];
   assignmentsCat;
 
   ngOnInit(): void {
@@ -24,9 +24,9 @@ export class AssignmentsComponent implements OnInit {
       this.assignments = assignments;
     });
 
-    this.assignmentsService.getUsers().subscribe((users) => {
+   /* this.assignmentsService.getUsers().subscribe((users) => {
       this.users = users;
-    });
+    });*/
 
     this.assignmentsService.getAssignementsCategories().subscribe((assignmentsCat) => {
       this.assignmentsCat = assignmentsCat;
