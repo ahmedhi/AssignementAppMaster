@@ -26,7 +26,7 @@ export class AuthService {
 
   isAdmin() {
     return new Promise((resolve, reject) => {
-      resolve(this.loggedIn)
+      resolve((this.user.role === 'Administrateur')?true: false)
     });
   };
 }

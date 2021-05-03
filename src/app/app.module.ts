@@ -34,13 +34,15 @@ const routes:Routes = [
     path:"home", component:AssignmentsComponent
   },
   {
-    path:"add", component:AddAssignmentComponent
+    path:"add", component:AddAssignmentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"assignments/:id", component:AssignmentDetailComponent
   },
   {
-    path:"assignments/:id/edit",component:EditAssigmentComponent
+    path:"assignments/:id/edit",component:EditAssigmentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"login", component:LoginComponent

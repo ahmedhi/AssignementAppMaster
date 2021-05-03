@@ -38,9 +38,9 @@
     <div style="padding-left: .5rem;" *ngIf="router.url !== '/login'">
       {{ user.login }} - {{ user.role}} 
     </div>
-    <div style="padding-left: 1rem;">
-      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="router.url !== '/login'">Se déconnecter</button>
-      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="router.url !== '/login'">Se connecter</button>
+    <div style="padding-left: 1rem;" *ngIf="router.url !== '/login'">
+      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="isLogin()">Se déconnecter</button>
+      <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="!isLogin()">Se connecter</button>
     </div>
   </nav>
   <div class="card">

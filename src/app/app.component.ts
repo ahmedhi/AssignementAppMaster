@@ -32,11 +32,15 @@ export class AppComponent {
             this.user = item;
             // et on retourne à la page d'accueil pour afficher la liste
             this.router.navigate(['/home']);
-        }else {
-          alert("le login ou le mot de passe incorect !! ")
         }
       }
+
+      if(!this.user) alert("le login ou le mot de passe incorect !! ");
     });
+  }
+
+  isLogin(){
+    return this.authService.loggedIn;
   }
 
 }
