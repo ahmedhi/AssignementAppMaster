@@ -31,12 +31,12 @@
   <img src="assets/img/emsi.jpeg" class="img-banner">
 </div>
 <div>
-  <nav class="display-flex flex-end card-header">
+  <nav class="display-flex flex-end card-header" *ngIf="user">
     <div *ngIf="router.url !== '/login'">
       <img src="assets/img/person@3x.png" class="icone">
     </div>
     <div style="padding-left: .5rem;" *ngIf="router.url !== '/login'">
-      Ahmed HILALI - Administrateur
+      {{ user.login }} - {{ user.role}} 
     </div>
     <div style="padding-left: 1rem;">
       <button mat-button routerLink="/login" class="btn btn-remove" *ngIf="router.url !== '/login'">Se déconnecter</button>

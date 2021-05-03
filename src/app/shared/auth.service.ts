@@ -6,25 +6,25 @@ import { User } from '../assignments/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  static loggedIn = false;
-  static user : User;
+  loggedIn = false;
+  user : User;
 
 
   constructor() { }
 
-  static logIn(userLogged:User) {
+  logIn(userLogged:User) {
     // ici par exemple, on devrait prendre en parametre un login et un password
     // et vérifier qu'ils sont valables (par ex en interrogeant une BD ou un service distant)
     this.loggedIn = true;
     this.user = userLogged;
    }
 
-  static logOut() {
+  logOut() {
     this.loggedIn = false;
     this.user = new User();
   }
 
-  static isAdmin() {
+  isAdmin() {
     return new Promise((resolve, reject) => {
       resolve(this.loggedIn)
     });

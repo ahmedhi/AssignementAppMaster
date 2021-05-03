@@ -1,7 +1,9 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, pairwise, tap, filter, throttleTime } from 'rxjs/operators';
+import { AppComponent } from 'src/app/app.component';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { User } from '../user.model';
@@ -19,30 +21,15 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   userLogged : User;
-  
+
+  constructor(private appComponent:AppComponent,
+              private router:Router,
+              private ngZone:NgZone) {}
 
   ngOnInit(): void { }
   onSubmit() {
-      console.log("username : " + this.username + " password : "+ this.password);
-      this.assignmentsService.getUsers().subscribe((users) => {
-        this.users = users;
-        console.log("INFOS  : "+JSON.stringify(this.users));
-        for (let item of Object.values(this.users)) {
-          
-          if (item.login === this.username && item.password === this.password) {
-             console.log("YES");
-             this.userLogged = item ;
-             AuthService.logIn(this.userLogged);
-          }else {
-            alert("le login ou le mot de passe incorect !! ")
-          }
-      }
-      });
-      
-     
-  }
-  
-  constructor(private assignmentsService: AssignmentsService, private ngZone:NgZone) {}
+    this.appComponent.login( this.username , this.password );
+  };
 
 }
 
